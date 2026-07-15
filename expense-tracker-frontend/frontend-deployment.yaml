@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expensetracker-frontend-deployment
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expensetracker-frontend
+  template:
+    metadata:
+      labels:
+        app: expensetracker-frontend
+    spec:
+      containers:
+      - name: expensetracker-frontend
+        image: somanathmuduli03/expensetracker-frontend:1.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: dockerhub-secret

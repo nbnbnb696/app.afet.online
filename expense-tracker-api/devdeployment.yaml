@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expensetracker-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: expensetracker
+  template:
+    metadata:
+      labels:
+        app: expensetracker
+    spec:
+      containers:
+      - name: expensetracker
+        image: somanathmuduli03/expensetracker:1.4
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: expensetracker-config
+        - secretRef:
+            name: expensetracker-secret
+      imagePullSecrets:
+      - name: dockerhub-secret
