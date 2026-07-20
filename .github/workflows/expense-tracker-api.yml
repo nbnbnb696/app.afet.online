@@ -1,10 +1,9 @@
 name: expense-tracker-api
 
 on:
-  workflow_dispatch: {}
   push:
     branches:
-      - dev
+      # - dev
       - qa
     # paths:
     #   - 'expense-tracker-api/**'
@@ -14,7 +13,7 @@ env:
   IMAGE_NAME: somanathmuduli03/expensetracker
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +22,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          if [[ "${{ github.ref_name }}" == "dev" ]]; then
-            echo "ENV=dev" >> $GITHUB_ENV
-          else
-            echo "ENV=qa" >> $GITHUB_ENV
-          fi
+          echo "ENV=qa" >> $GITHUB_ENV
           echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
 
       - name: Set up JDK 17
@@ -56,25 +51,24 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
             ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
 
-      # CD - Uncomment when ready to deploy
-      # - name: Set up kubectl
-      #   uses: azure/setup-kubectl@v3
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v3
 
-      # - name: Set AKS context
-      #   uses: azure/aks-set-context@v3
-      #   with:
-      #     resource-group: expense-tracker-app
-      #     cluster-name: et-dev
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set AKS context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: expense-tracker-app
+          cluster-name: et-dev
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # - name: Set up Helm
-      #   uses: azure/setup-helm@v3
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
 
-      # - name: Deploy with Helm
-      #   run: |
-      #     helm upgrade --install expense-tracker-api ./helm/expense-tracker-api \
-      #       -f ./helm/expense-tracker-api/values-${{ env.ENV }}.yaml \
-      #       --set image.tag=${{ env.IMAGE_TAG }} \
-      #       --set secret.azureSqlPassword=${{ secrets.AZURE_SQL_PASSWORD }} \
-      #       --set secret.jwtSecret=${{ secrets.JWT_SECRET }} \
-      #       --wait
+      - name: Deploy with Helm
+        run: |
+          helm upgrade --install expense-tracker-api ./helm/expense-tracker-api \
+            -f ./helm/expense-tracker-api/values-qa.yaml \
+            --set image.tag=${{ env.IMAGE_TAG }} \
+            --set secret.azureSqlPassword=${{ secrets.AZURE_SQL_PASSWORD }} \
+            --set secret.jwtSecret=${{ secrets.JWT_SECRET }} \
+            --wait
