@@ -1,6 +1,7 @@
 name: expense-tracker-api
 
 on:
+  workflow_dispatch: {}
   push:
     branches:
       - dev
