@@ -3,7 +3,7 @@ namespace: qa
 image:
   tag: "1.4"
 
-replicaCount: 2
+replicaCount: 1
 
 config:
   azureSqlServer: "et-db.database.windows.net"

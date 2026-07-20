@@ -6,3 +6,4 @@ metadata:
 data:
   AZURE_SQL_SERVER: {{ .Values.config.azureSqlServer | quote }}
   AZURE_SQL_DB: {{ .Values.config.azureSqlDb | quote }}
+  SPRING_PROFILES_ACTIVE: {{ .Values.namespace | quote }}
