@@ -52,10 +52,10 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
 
       - name: Set up kubectl
-        uses: azure/setup-kubectl@v3
+        uses: azure/setup-kubectl@v4
 
       - name: Set AKS context
-        uses: azure/aks-set-context@v3
+        uses: azure/aks-set-context@v4
         with:
           resource-group: expense-tracker-app
           cluster-name: et-dev
