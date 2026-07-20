@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expensetracker-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: expensetracker
+  template:
+    metadata:
+      labels:
+        app: expensetracker
+    spec:
+      containers:
+      - name: expensetracker
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.targetPort }}
+        envFrom:
+        - configMapRef:
+            name: expensetracker-config
+        - secretRef:
+            name: expensetracker-secret
+      imagePullSecrets:
+      {{- range .Values.imagePullSecrets }}
+      - name: {{ .name }}
+      {{- end }}

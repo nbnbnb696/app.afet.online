@@ -1,0 +1,10 @@
+namespace: qa
+
+image:
+  tag: "1.4"
+
+replicaCount: 2
+
+config:
+  azureSqlServer: "et-db.database.windows.net"
+  azureSqlDb: "free-sql-db-3281680"

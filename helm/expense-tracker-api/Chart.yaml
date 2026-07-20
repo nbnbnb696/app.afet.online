@@ -1,0 +1,6 @@
+apiVersion: v2
+name: expense-tracker-api
+description: Helm chart for Expense Tracker Backend API
+type: application
+version: 1.0.0
+appVersion: "1.4"

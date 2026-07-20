@@ -1,0 +1,25 @@
+replicaCount: 2
+
+image:
+  repository: somanathmuduli03/expensetracker
+  tag: "1.4"
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: dockerhub-secret
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+namespace: dev
+
+config:
+  azureSqlServer: "et-db.database.windows.net"
+  azureSqlDb: "free-sql-db-3281680"
+
+secret:
+  azureSqlUser: "azureuser@et-db"
+  azureSqlPassword: ""
+  jwtSecret: ""
