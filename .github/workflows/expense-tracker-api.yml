@@ -6,9 +6,9 @@ on:
     branches:
       - dev
       - qa
-    paths:
-      - 'expense-tracker-api/**'
-      - 'helm/expense-tracker-api/**'
+    # paths:
+    #   - 'expense-tracker-api/**'
+    #   - 'helm/expense-tracker-api/**'
 
 env:
   IMAGE_NAME: somanathmuduli03/expensetracker
