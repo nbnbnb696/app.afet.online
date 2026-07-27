@@ -30,7 +30,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
@@ -47,6 +46,7 @@ jobs:
         with:
           context: ./expense-tracker-api
           push: true
+          no-cache: true
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
             ${{ env.IMAGE_NAME }}:${{ env.ENV }}-latest
