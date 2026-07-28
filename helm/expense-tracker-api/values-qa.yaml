@@ -1,7 +1,7 @@
 namespace: qa
 
 image:
-  tag: "qa-latest"
+  tag: "qa.1"
 
 replicaCount: 1
 
