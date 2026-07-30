@@ -1,5 +1,9 @@
 namespace: qa
 
+ingress:
+  host: api-qa.afet.online
+  tlsSecretName: api-qa-afet-tls
+
 image:
   tag: "1.4"
 
