@@ -5,7 +5,7 @@ ingress:
   tlsSecretName: api-qa-afet-tls
 
 image:
-  tag: "1.4"
+  tag: "qa-latest"
 
 replicaCount: 1
 
