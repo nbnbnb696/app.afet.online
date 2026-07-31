@@ -1,0 +1,10 @@
+namespace: qa
+
+image:
+  tag: "qa-1.0"
+
+replicaCount: 1
+
+ingress:
+  host: app-qa.afet.online
+  tlsSecretName: app-qa-afet-tls
