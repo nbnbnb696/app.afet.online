@@ -1,12 +1,15 @@
 # Stage 1: Build the React app
 FROM node:18-alpine AS build
 
+ARG ENV_FILE=.env.production
+
 WORKDIR /app
 
 COPY package.json package-lock.json ./
 RUN npm ci --silent
 
 COPY . .
+COPY ${ENV_FILE} .env.production
 RUN npm run build
 
 # Stage 2: Serve with nginx

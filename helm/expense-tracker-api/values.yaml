@@ -15,6 +15,10 @@ service:
 
 namespace: dev
 
+ingress:
+  host: api.afet.online
+  tlsSecretName: api-afet-tls
+
 config:
   azureSqlServer: "et-db.database.windows.net"
   azureSqlDb: "free-sql-db-3281680"
