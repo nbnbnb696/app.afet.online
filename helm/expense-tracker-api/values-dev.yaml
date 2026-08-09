@@ -6,5 +6,5 @@ image:
 replicaCount: 2
 
 config:
-  azureSqlServer: "et-db.database.windows.net"
-  azureSqlDb: "free-sql-db-3281680"
+  azureSqlServer: "apet-sql.database.windows.net"
+  azureSqlDb: "apet-small"
