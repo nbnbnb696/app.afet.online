@@ -3,7 +3,7 @@ namespace: dev
 image:
   tag: "1.4"
 
-replicaCount: 2
+replicaCount: 1
 
 config:
   azureSqlServer: "apet-sql.database.windows.net"
