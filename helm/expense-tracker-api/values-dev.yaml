@@ -1,7 +1,7 @@
 namespace: dev
 
 image:
-  tag: "dev-v23"
+  tag: "dev-v24"
 
 replicaCount: 1
 
