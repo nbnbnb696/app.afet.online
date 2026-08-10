@@ -16,7 +16,7 @@ service:
 namespace: dev
 
 ingress:
-  host: api.afet.online
+  host: api-dev.afet.online
   tlsSecretName: api-afet-tls
 
 config:
