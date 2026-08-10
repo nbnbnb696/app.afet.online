@@ -9,7 +9,7 @@ imagePullSecrets:
   - name: dockerhub-secret
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
   targetPort: 8080
 
